@@ -1,4 +1,6 @@
-=Music=
+# Music
+
+## Description
 
   Music is a personal experiment aimed towards a better discovery avenue for classical and baroque music on Spotify.
 
@@ -17,7 +19,7 @@ Ilya Gringolts and Leonidas Kavakos are nowhere to be found on search results de
 This isn't an issue of quality; Gringolts plays Caprice No. 5 in jaw-dropping 1:53, much much faster than Heifetz himself, 
 and that Kavakos nails No. 24 with the stamina of a bull like no other. 
 
-![alt tag](https://raw.github.com/mmenchu/music/master/music/readme/1.png)
+![alt tag](https://raw.github.com/mmenchu/music/master/readme/spotify_1.png "")
 
 A violin student studying/researching the Paganini Caprices has no way of finding "the fastest recording of No. 5"
 or a "transcription of the Caprices for a quartet". This is an era of Google, Pinterest and the Cloud. 
@@ -25,9 +27,9 @@ or a "transcription of the Caprices for a quartet". This is an era of Google, Pi
 Discovery is also harder due to the fact composers and performers get treated pretty much the same way. 
 Maxim Vengerov is according to Spotify similar to "Johann Strauss II"; Gil Shaham comes to mind more easily if you ask me. 
 
-![alt tag](https://raw.github.com/mmenchu/music/master/music/readme/2.png)   
+![alt tag](https://raw.github.com/mmenchu/music/master/readme/spotify_2.png "")
 
-==Scrapers==
+## Scrapers
 
 DB Content is scraped via the feed fetchers in music/music/feed_fetchers/
 [code]
