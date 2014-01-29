@@ -36,13 +36,11 @@ Run the following scrapers in music/music/feed_fetchers/ to populate the DB.
 ```
 ./find_musicians.sh  
 ```
-
 2. Hit Spotify's Search (list of an artist's Albums) and Lookup (Album details) APIs 
 ```
 python artist_search.py
 python artist_lookup.py 
 ```
-
 3. Create individual Album entries
 ```
 python import_musicians.py
