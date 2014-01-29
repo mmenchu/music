@@ -29,10 +29,36 @@ Maxim Vengerov is according to Spotify similar to "Johann Strauss II"; Gil Shaha
 
 ![alt tag](https://raw.github.com/mmenchu/music/master/readme/spotify_2.png "")
 
-## Scrapers
+## Content
 
-DB Content is scraped via the feed fetchers in music/music/feed_fetchers/
+Run the following scrapers in music/music/feed_fetchers/ to populate the DB.
+1. Curl Wikipedia lists of classical violinists/pianists/cellists/... We'll look these guys up on Spotify 
 ```
-./find_musicians.sh  # Curls Wikipedia lists of classical musicians
-artist_search.py & artist_lookup.py # Curl wrappers to hit the Spotify's "Lookup" and "Search" APIs
+./find_musicians.sh  
 ```
+
+2. Hit Spotify's Search (list of an artist's Albums) and Lookup (Album details) APIs 
+```
+python artist_search.py
+python artist_lookup.py 
+```
+
+3. Create individual Album entries
+```
+python import_musicians.py
+```
+Should have this many after a little while (violinists/cellists/pianists only)
+```
+music=# select count(*) from  music_album;
+ count
+-------
+  8633
+(1 row)
+```
+
+## Next Steps - 1/28/2014
+
+* Detailed info about the tracks in each album
+* Non-trivial linking between tracks. For example a recording of Rachmaninov's Variation on La Folia should
+  be related to a recording of Corelli's La Folia for Violin & Piano.
+
