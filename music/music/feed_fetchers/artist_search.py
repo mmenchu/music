@@ -1,5 +1,6 @@
 import urllib
 import super_scraper
+import time
 
 import os, sys
 sys.path.insert(0,'../../')
@@ -14,6 +15,7 @@ class ArtistSearch():
         url = "http://ws.spotify.com/search/1/artist.json?q=%s" % encoded_full_name
         response = super_scraper.SuperScraper("", url).scrape()
         print response
+        time.sleep(3)
         return response, url
 
     @staticmethod
@@ -33,4 +35,7 @@ class ArtistSearch():
 
 if __name__ == '__main__':
     for artist in FeedArtistTerm.objects.all():
-        ArtistSearch.fetch(artist.term)
+        try:
+            ArtistSearch.fetch(artist.term)
+        except:
+            print ">> Check out %s" % artist.term

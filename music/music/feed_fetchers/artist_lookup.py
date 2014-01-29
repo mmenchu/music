@@ -1,5 +1,6 @@
 import urllib
 import super_scraper
+import time
 
 import os, sys
 sys.path.insert(0,'../../')
@@ -13,6 +14,7 @@ class ArtistLookup():
         url = 'http://ws.spotify.com/lookup/1/.json?uri=%s&extras=albumdetail' % spotify_uri
         response = super_scraper.SuperScraper("", url).scrape()
         print response
+        time.sleep(3)
         return response, url
 
     @staticmethod
