@@ -22,7 +22,7 @@ and that Kavakos nails No. 24 with the stamina of a bull like no other.
 ![alt tag](https://raw.github.com/mmenchu/music/master/readme/spotify_1.png "")
 
 A violin student studying/researching the Paganini Caprices has no way of finding "the fastest recording of No. 5"
-or a "transcription of the Caprices for a quartet". This is an era of Google, Pinterest and the Cloud. 
+or a "transcription of the Caprices for a quartet". This in an era of Google, Pinterest and the Cloud. 
 
 Discovery is also harder due to the fact composers and performers get treated pretty much the same way. 
 Maxim Vengerov is according to Spotify similar to "Johann Strauss II"; Gil Shaham comes to mind more easily if you ask me. 
@@ -32,6 +32,7 @@ Maxim Vengerov is according to Spotify similar to "Johann Strauss II"; Gil Shaha
 ## Scrapers
 
 DB Content is scraped via the feed fetchers in music/music/feed_fetchers/
-    ./find_musicians.sh  # Curls Wikipedia lists of classical musicians
-    artist_search.py & artist_lookup.py # Curl wrappers to hit the Spotify's "Lookup" and "Search" APIs
-
+```
+./find_musicians.sh  # Curls Wikipedia lists of classical musicians
+artist_search.py & artist_lookup.py # Curl wrappers to hit the Spotify's "Lookup" and "Search" APIs
+```
