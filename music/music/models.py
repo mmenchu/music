@@ -23,7 +23,11 @@ class FeedArtistLookup(models.Model):
         spotify_uris = []
         for term in unique_terms:
             resp = FeedArtistSearch.get_fetches_for_term(term)[0].response
-            for artist in json.loads(resp)['artists']:
+            try:
+                data = json.loads(resp)
+            except:
+                continue
+            for artist in data['artists']:
                 print "%s: %s" % (artist['href'], artist['name'])
                 spotify_uris.append(artist['href'])
         return spotify_uris
@@ -57,7 +61,7 @@ class FeedArtistSearch(models.Model):
         app_label = 'music'
 
 class FeedArtistTerm(models.Model):
-    artist_types = ((0, 'violinist'), (1, 'cellist'), (2, 'pianist'), (3, 'consort'), (4, 'ensemble'), (5, 'orchestra'), (6, 'conductor'), (7, 'pianist'), (8, 'harpsichordist'))
+    artist_types = ((0, 'violinist'), (1, 'cellist'), (2, 'pianist'), (3, 'consort'), (4, 'ensemble'), (5, 'orchestra'), (6, 'conductor'), (7, 'pianist'), (8, 'harpsichordist'), (9, 'viol'))
     term    = models.CharField(max_length=64)
     type    = models.IntegerField(choices=artist_types)
 
