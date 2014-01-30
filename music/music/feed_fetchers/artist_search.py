@@ -1,6 +1,8 @@
 import urllib
 import super_scraper
 import time
+import pdb
+import unicodedata
 
 import os, sys
 sys.path.insert(0,'../../')
@@ -20,6 +22,9 @@ class ArtistSearch():
 
     @staticmethod
     def fetch(full_name):
+        if isinstance(full_name, unicode):
+            full_name = unicodedata.normalize('NFKD', full_name).encode('ascii','ignore')
+
         if FeedArtistSearch.havent_fetched_in_24hrs(full_name):
             print "Fetching search for %s" % full_name
             resp, url = ArtistSearch.search(full_name)
@@ -39,3 +44,4 @@ if __name__ == '__main__':
             ArtistSearch.fetch(artist.term)
         except:
             print ">> Check out %s" % artist.term
+            
