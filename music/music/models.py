@@ -61,7 +61,7 @@ class FeedArtistSearch(models.Model):
         app_label = 'music'
 
 class FeedArtistTerm(models.Model):
-    artist_types = ((0, 'violinist'), (1, 'cellist'), (2, 'pianist'), (3, 'consort'), (4, 'ensemble'), (5, 'orchestra'), (6, 'conductor'), (7, 'pianist'), (8, 'harpsichordist'), (9, 'viol'))
+    artist_types = ((0, 'violinist'), (1, 'cellist'), (2, 'pianist'), (3, 'consort'), (4, 'ensemble'), (5, 'orchestra'), (6, 'conductor'), (7, 'pianist'), (8, 'harpsichordist'), (9, 'viol'), (10, 'early music ensembles'), (11, 'string quartets'))
     term    = models.CharField(max_length=64)
     type    = models.IntegerField(choices=artist_types)
 
