@@ -1,3 +1,4 @@
+import collections
 import urllib
 import super_scraper
 import json
@@ -17,7 +18,7 @@ class AlbumExtractor():
             return False
         artist_name = data['artist']['name']
         for album in data['artist']['albums']:
-            album_data = album['album']
+            album_data = collections.defaultdict(lambda: '*', album['album'])
             album_uri = album_data['href']
             
             if Album.exists(album_uri):
@@ -26,26 +27,21 @@ class AlbumExtractor():
                 print "Extracting album %s" % album_uri
                 new_album = Album()
                 new_album.artist_name = artist_name
-                try:
-                    new_album.spotify_artist_id = album_data['artist-id']
-                except:
-                    new_album.spotify_artist_id = album_data['artist']
+                new_album.spotify_artist_id = album_data['artist'] if album_data['artist-id'] == '*' else album_data['artist-id']
                 new_album.album_name = album_data['name']
-                try:
-                    new_album.upc_id = album_data['external-ids'][0]['id']
-                except:
-                    new_album.upc_id = '*'
+                new_album.upc_id = album_data['external-ids'][0]['id'] if (album_data['external-ids'].__class__.__name__ == "dict") else '*'
                 new_album.year_released = album_data['released']
                 new_album.album_uri = album_data['href']
-                new_album.save()
-            
+                try:
+                    new_album.save()
+                except:
+                    print "Unable to save album %s. Title too long?" % album_data
+                    continue
+                    
                 print "Saving album availability"
                 av_record = AlbumAvailablity()
                 av_record.album = new_album
-                try:
-                    av_record.available_in = album_data['availability']['territories']
-                except:
-                    av_record.available_in = '*'
+                av_record.available_in = album_data['availability']['territories'] if album_data['availability'].__class__.__name__ == "dict" else '*'
                 av_record.save()
         return True
 
