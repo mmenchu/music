@@ -9,13 +9,12 @@ class FeedArtistLookup(models.Model):
     spotify_uri = models.CharField(max_length=256)
 
     @classmethod
-    def havent_fetched_in_24hrs(cls, spotify_uri):
+    def havent_fetched_in_48hrs(cls, spotify_uri):
         query = cls.objects.filter(spotify_uri=spotify_uri).order_by('-fetched_on')
         if query.count() == 0:
             return True
-        else:
-            last_fetch = query[0].fetched_on.replace(tzinfo=None)
-            return (datetime.datetime.now() - last_fetch).days > 1
+        last_fetch = query[0].fetched_on.replace(tzinfo=None)
+        return (datetime.datetime.now() - last_fetch).days > 2
 
     @classmethod
     def extract_spotify_uris(cls):

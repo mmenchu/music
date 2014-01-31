@@ -20,7 +20,7 @@ class ArtistLookup():
     @staticmethod
     def fetch(spotify_uri):
  
-        if FeedArtistLookup.havent_fetched_in_24hrs(spotify_uri):
+        if FeedArtistLookup.havent_fetched_in_48hrs(spotify_uri):
             print "Fetching lookup for %s" % spotify_uri
             resp, url = ArtistLookup.lookup(spotify_uri)
             print "Saving response to DB"
