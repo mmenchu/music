@@ -47,7 +47,7 @@ class AlbumExtractor():
 
     @staticmethod
     def run():
-        for idx, lookup in enumerate(FeedArtistLookup.objects.all()):
+        for idx, lookup in enumerate(FeedArtistLookup.objects.all().order_by('-id')):
             AlbumExtractor.extract(lookup.response)
 
 if __name__ == '__main__':
