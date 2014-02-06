@@ -9,12 +9,12 @@ class FeedArtistLookup(models.Model):
     spotify_uri = models.CharField(max_length=256)
 
     @classmethod
-    def havent_fetched_in_48hrs(cls, spotify_uri):
+    def havent_fetched_in_30days(cls, spotify_uri):
         query = cls.objects.filter(spotify_uri=spotify_uri).order_by('-fetched_on')
         if query.count() == 0:
             return True
         last_fetch = query[0].fetched_on.replace(tzinfo=None)
-        return (datetime.datetime.now() - last_fetch).days > 2
+        return (datetime.datetime.now() - last_fetch).days > 30
 
     @classmethod
     def extract_spotify_uris(cls):
@@ -74,7 +74,12 @@ class Album(models.Model):
     upc_id            = models.CharField(max_length=64)
     year_released     = models.CharField(max_length=16)
     album_uri         = models.CharField(max_length=256)
-    
+    itunes_upc_lookup = models.TextField()
+
+    @classmethod
+    def get_albums_needing_itunes_lookup(cls, max_num=100):
+        return cls.objects.filter(itunes_upc_lookup=None)[:max_num]
+        
     @classmethod
     def with_unchecked_availability_within_a_month(cls):
         one_month_ago = datetime.datetime.now() - datetime.timedelta(days=30)
